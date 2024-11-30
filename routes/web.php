@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UmkmController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard',[
+        "title"=>"Dashboard"
+    ]);
 });
+Route::resource('umkm', UmkmController::class);
