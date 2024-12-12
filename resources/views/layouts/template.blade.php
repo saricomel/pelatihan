@@ -95,7 +95,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="#"
+                            <a href="{{ route('pembinaan.index') }}"
                             class="nav-link {{($title==='Pembinaan')?'active':''}}">
                                 <i class="nav-icon fas fa-chalkboard-teacher"></i>
                                 <p>

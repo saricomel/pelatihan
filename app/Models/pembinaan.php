@@ -8,11 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class pembinaan extends Model
 {
     use HasFactory;
-    protected $fillable = ['kegiatan', 'tanggal', 'hasil'];
+    protected $fillable = ['kegiatan', 'tanggal', 'hasil_pembinaan'];
 
     // Relasi dengan detail_pembinaan
     public function detailPembinaan()
-    {
-        return $this->hasMany(detail_pembinaan::class); // Pastikan DetailPembinaan diawali kapital
-    }
+{
+    return $this->hasMany(detail_pembinaan::class);
+}
+
+public function umkm()
+{
+    return $this->belongsTo(umkm::class, 'umkm_id', 'id');
+}
+
 }
