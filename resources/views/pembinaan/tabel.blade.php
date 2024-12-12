@@ -43,11 +43,11 @@
                         <td>
                         
                             <div class="btn-group">
-                                <form action="{{ route('pembinaan.destroy', $dt->id) }}" method="post">
+                                <form action="{{ route('pembinaan.destroy', $dt->id) }}" method="post" class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">
-                                        <i class="fas fa-trash"></i>
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus spp ini?');">
+                                        <i class="fas fa-trash fa-lg"></i>
                                     </button>
                                 </form>
                                 <a type="button" class="btn btn-warning" href="{{ route('pembinaan.edit', $dt->id) }}">
