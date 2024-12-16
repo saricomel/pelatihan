@@ -106,7 +106,7 @@
                         </li>
 
                         <li class="nav-item">
-    <a href="#" class="nav-link {{($title==='Omzet')?'active':''}}">
+    <a href="{{ route('omzet.index') }}" class="nav-link {{($title==='omzet')?'active':''}}">
         <i class="nav-icon fas fa-chart-line"></i> <!-- Ikon Omzet -->
         <p>
             Omzet

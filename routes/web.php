@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OmzetController;
 use App\Http\Controllers\PembinaanController;
 use App\Http\Controllers\UmkmController;
 use Illuminate\Support\Facades\Route;
@@ -22,3 +23,4 @@ Route::get('/', function () {
 });
 Route::resource('umkm', UmkmController::class);
 Route::resource('pembinaan', PembinaanController::class);
+Route::resource('omzet', OmzetController::class);
