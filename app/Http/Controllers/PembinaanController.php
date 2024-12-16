@@ -33,7 +33,7 @@ class PembinaanController extends Controller
     public function store(Request $request): RedirectResponse
     {
         // Validasi input
-        $request->validate([
+        $validasi=$request->validate([
             'umkm_id' => 'required', // Memastikan umkm_id berupa array
             'kegiatan' => 'required', // Kegiatan wajib diisi
             'tanggal' => 'required|date', // Tanggal wajib diisi dan valid
@@ -42,12 +42,7 @@ class PembinaanController extends Controller
        
 
         // Membuat data pembinaan baru
-        $pembinaan = pembinaan::create([
-            'umkm' => $request->umkm,
-            'kegiatan' => $request->kegiatan,
-            'tanggal' => $request->tanggal,
-            'hasil_pembinaan' => $request->hasil_pembinaan,
-        ]);
+        pembinaan::create($validasi);
 
         // Redirect ke halaman pembinaan dengan pesan sukses
         return redirect()->route('pembinaan.index')->with('success', 'Data pembinaan Berhasil Ditambahkan');

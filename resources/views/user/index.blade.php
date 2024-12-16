@@ -7,63 +7,85 @@
 <!-- Toastr -->
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
 @endsection
-@section('judulh1','Admin - Pembinaan UMKM')
-@section('konten')
-<div class="col-md-12">
-    <div class="card card-info">
-        <div class="card-header">
-            <h2 class="card-title">Data Pembinaan UMKM</h2>
-            <a type="button" class="btn btn-success float-right" href="{{ route('pembinaan.create') }}">
-                <i class="fas fa-plus"></i> Tambah Pembinaan
-            </a>
 
-    
+@section('judulh1','Admin - User')
+@section('judulh3','User')
+@section('konten')
+
+<div class="col-md-4">
+
+    <div class="card bg-dark">
+        <div class="card-header">
+            <h3 class="card-title">Input User</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form action="{{ route('user.store') }}" method="POST">
+            @csrf
+            <div class=" card-body">
+                <div class="form-group">
+                    <label for="name">Nama</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder=" Nama Lengkap" required value="{{ old('name') }}">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="JohnDoe@example.com" required value="{{ old('email') }}">
+                    @error('email')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+               
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary float-right">Simpan</button>
+            </div>
+        </form>
+    </div>
+
+
+</div>
+
+<div class="col-md-8">
+    <div class="card card-dark">
+        <div class="card-header">
+            <h3 class="card-title">Data anggota</h3>
         </div>
         <!-- /.card-header -->
 
         <div class="card-body">
-
-            <table id="example1" class="table table-bordered table-striped">
+            <table id="example1" class="table table-bordered table-striped ">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>umkm</th>
-                        <th>Kegiatan</th>
-                        <th>Tanggal</th>
-                        <th>Hasil Pembinaan</th>
-                        <th>Aksi</th>
+                        <th>Nama </th>
+                        <th>Email</th>
+                   
                     </tr>
                 </thead>
                 <tbody>
+
                     @foreach($data as $dt)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $dt->umkm->pemilik }}</td>
-                        <td>{{ $dt->kegiatan }}</td>
-                        <td>{{ $dt->tanggal }}</td>
-                        <td>{{ $dt->hasil_pembinaan }}</td>
-                        <td>
-                        
-                            <div class="btn-group">
-                                <form action="{{ route('pembinaan.destroy', $dt->id) }}" method="post" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus spp ini?');">
-                                        <i class="fas fa-trash fa-lg"></i>
-                                    </button>
-                                </form>
-                                <a type="button" class="btn btn-warning" href="{{ route('pembinaan.edit', $dt->id) }}">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                            </div>
-                            
-                            
-                        </td>
+                        <td>{{ $dt->name }}</td>
+                        <td>{{ $dt->email }}</td>
                     </tr>
+
                     @endforeach
                 </tbody>
             </table>
+
         </div>
+
+
     </div>
 </div>
 @endsection
@@ -84,6 +106,7 @@
 <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- Toastr -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 @endsection
 
 @section('tambahScript')
@@ -93,15 +116,14 @@ $(function() {
         "responsive": true,
         "lengthChange": true,
         "autoWidth": false,
+        "responsive": true,
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 });
 
 @if($message = Session::get('success'))
-toastr.success("{{ $message }}");
-@endif
-@if($message = Session::get('updated'))
-toastr.warning("{{ $message }}");
+toastr.success("{{ $message}}");
+@elseif($message = Session::get('updated'))
+toastr.warning("{{ $message}}");
 @endif
 </script>
 @endsection
-
