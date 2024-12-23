@@ -26,7 +26,7 @@
                         <th>No</th>
                         <th>umkm</th>
                         <th>priodi</th>
-                        <th>jumblah_priodi</th>
+                        <th>jumblah omzet</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>

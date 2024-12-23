@@ -16,18 +16,14 @@
             <a type="button" class="btn btn-success float-right" href="{{ route('pembinaan.create') }}">
                 <i class="fas fa-plus"></i> Tambah Pembinaan
             </a>
-
     
         </div>
         <!-- /.card-header -->
-
         <div class="card-body">
-
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>umkm</th>
                         <th>Kegiatan</th>
                         <th>Tanggal</th>
                         <th>Hasil Pembinaan</th>
@@ -38,24 +34,28 @@
                     @foreach($data as $dt)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $dt->umkm->pemilik }}</td>
                         <td>{{ $dt->kegiatan }}</td>
                         <td>{{ $dt->tanggal }}</td>
                         <td>{{ $dt->hasil_pembinaan }}</td>
                         <td>
-                        
+
                             <div class="btn-group">
                                 <form action="{{ route('pembinaan.destroy', $dt->id) }}" method="post" class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus spp ini?');">
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus Pembinaan ini?');" style="width: 70px;">
                                         <i class="fas fa-trash fa-lg"></i>
                                     </button>
                                 </form>
-                                <a type="button" class="btn btn-warning" href="{{ route('pembinaan.edit', $dt->id) }}">
+                                <a class="btn btn-sm btn-warning" href="{{ route('pembinaan.edit', $dt->id) }}" style="width: 70px;">
                                     <i class="fas fa-edit"></i>
                                 </a>
                             </div>
+                            
+                            </div>
+                            
+                            </div>
+
                             
                             
                         </td>
@@ -67,7 +67,6 @@
     </div>
 </div>
 @endsection
-
 @section('tambahanJS')
 <!-- DataTables  & Plugins -->
 <script src="plugins/datatables/jquery.dataTables.min.js"></script>
@@ -85,7 +84,6 @@
 <!-- Toastr -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 @endsection
-
 @section('tambahScript')
 <script>
 $(function() {
@@ -95,7 +93,6 @@ $(function() {
         "autoWidth": false,
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 });
-
 @if($message = Session::get('success'))
 toastr.success("{{ $message }}");
 @endif
@@ -104,4 +101,3 @@ toastr.warning("{{ $message }}");
 @endif
 </script>
 @endsection
-

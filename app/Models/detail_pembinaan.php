@@ -10,11 +10,8 @@ class detail_pembinaan extends Model
 {
     use HasFactory;
     protected $fillable = ['umkm_id', 'pembinaan_id'];
-
     public function umkm()
 {
     return $this->hasManyThrough(umkm::class, detail_pembinaan::class, 'pembinaan_id', 'id', 'id', 'umkm_id');
 }
-
-
 }

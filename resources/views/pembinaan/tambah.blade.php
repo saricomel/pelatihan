@@ -1,6 +1,5 @@
 @extends('layouts.template')
 @section('judulh1','Admin - Customer')
-
 @section('konten')
 <div class="col-md-6">
     @if ($errors->any())
@@ -13,7 +12,6 @@
         </ul>
     </div>
     @endif
-
     <div class="card card-success">
         <div class="card-header">
             <h3 class="card-title">Tambah Data Customer</h3>
@@ -22,7 +20,6 @@
         <!-- form start -->
         <form action="{{ route('pembinaan.store') }}" method="POST">
             @csrf
-
             <div class=" card-body">
                 <div class="form-group">
                     

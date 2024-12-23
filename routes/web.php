@@ -31,3 +31,4 @@ route::resource('user', UserController::class)
     Route::get('login',[LoginController::class,'loginView'])->name('login');
     Route::post('login',[LoginController::class,'authenticate']);
     Route::post('logout',[LoginController::class,'logout'])->middleware('auth');
+    
