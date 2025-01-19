@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\laporancontroller;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OmzetController;
 use App\Http\Controllers\PembinaanController;
@@ -31,4 +32,5 @@ route::resource('user', UserController::class)
     Route::get('login',[LoginController::class,'loginView'])->name('login');
     Route::post('login',[LoginController::class,'authenticate']);
     Route::post('logout',[LoginController::class,'logout'])->middleware('auth');
-    
+    Route::get('/laporan/pembinaan', [laporancontroller::class, 'laporanPembinaan'])->name('pembinaan.laporan');
+

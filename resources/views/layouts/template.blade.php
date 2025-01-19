@@ -144,6 +144,16 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('pembinaan.laporan') }}"
+                               class="nav-link {{($title==='Pembinaan')?'active':''}}">
+                                <i class="nav-icon fas fa-table"></i> <!-- Ikon tabel laporan -->
+                                <p>
+                                    Laporan
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

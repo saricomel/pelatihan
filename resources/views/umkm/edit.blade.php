@@ -1,5 +1,5 @@
 @extends('layouts.template')
-@section('judulh1','Admin - UMKM')
+@section('judulh1','TAMPILAN EDIT UMKM')
 @section('judulh3','Edit UMKM')
 @section('konten')
 <div class="col-md-6">

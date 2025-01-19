@@ -1,5 +1,5 @@
 @extends('layouts.template')
-@section('judulh1','Admin - Customer')
+@section('judulh1','Admin - Pembinaan')
 @section('konten')
 <div class="col-md-6">
     @if ($errors->any())
@@ -14,7 +14,7 @@
     @endif
     <div class="card card-success">
         <div class="card-header">
-            <h3 class="card-title">Tambah Data Customer</h3>
+            <h3 class="card-title">Tambah Data Pembinaan</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
@@ -25,7 +25,7 @@
                     
                     <label for="umkm_id">UMKM</label>
                     <select class="form-control" wire:model="umkm_id" name="umkm_id[]" >
-                        <option hidden>--pilih produk</option>
+                        <option hidden>--pilih UMKM</option>
                         @foreach ($umkm as $umkm)
                             <option value="{{ $umkm->id }}">{{ $umkm->pemilik }}</option>
                         @endforeach
@@ -41,7 +41,7 @@
                     <input type="date" class="form-control" id="tanggal" name="tanggal" >
                 </div>
                 <div class="form-group">
-                    <label for="hasil_pembinaan">hasil_pembinaan</label>
+                    <label for="hasil_pembinaan">hasil pembinaan</label>
                     <input type="text" class="form-control" id="hasil_pembinaan" name="hasil_pembinaan" >
                 </div>
             <div class="card-footer">

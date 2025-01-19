@@ -125,14 +125,22 @@ $(function() {
         "responsive": true,
         "lengthChange": true,
         "autoWidth": false,
-        "responsive": true,
+        "buttons": [
+            {
+                extend: 'excelHtml5',
+                text: 'Export Excel',
+                title: 'Data UMKM',
+                className: 'btn btn-success'
+            }
+        ]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 });
 
 @if($message = Session::get('success'))
-toastr.success("{{ $message}}");
+toastr.success("{{ $message }}");
 @elseif($message = Session::get('updated'))
-toastr.warning("{{ $message}}");
+toastr.warning("{{ $message }}");
 @endif
 </script>
 @endsection
+

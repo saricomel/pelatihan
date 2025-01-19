@@ -24,7 +24,7 @@
             @csrf
             <div class=" card-body">
                 <div class="form-group">
-                    <label for="name">Nama</label>
+                    <label for="name">Nama</label> 
                     <input type="text" class="form-control" id="name" name="name" placeholder=" Nama Lengkap" required value="{{ old('name') }}">
                 </div>
                 <div class="form-group">
@@ -56,7 +56,7 @@
 <div class="col-md-8">
     <div class="card card-dark">
         <div class="card-header">
-            <h3 class="card-title">Data anggota</h3>
+            <h3 class="card-title">Data User</h3>
         </div>
         <!-- /.card-header -->
 
