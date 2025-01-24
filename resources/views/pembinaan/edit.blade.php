@@ -20,7 +20,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form action="{{ route('pembinaan.update', $pembinaan->id) }}" method="POST">
+        <form action="{{ route('pembinaan.update', $pembinaan->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="card-body">
@@ -32,10 +32,11 @@
                     <label for="tanggal">Tanggal</label>
                     <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{ $pembinaan->tanggal }}">
                 </div>
-                <div class="form-group">
-                    <label for="hasil_pembinaan">hasil Pembinaan</label>
-                    <textarea id="hasil_pembinaan" name="hasil_pembinaan" class="form-control" rows="4">{{ $pembinaan->hasil_pembinaan }}</textarea>
-                </div>
+                <label for="hasil_pembinaan">Hasil Pembinaan</label>
+                <input type="file" class="form-control" id="hasil_pembinaan" name="hasil_pembinaan" accept="image/*">
+                @if($pembinaan->hasil_pembinaan)
+                    <img src="{{ asset('hasil_pembinaan/' . $pembinaan->hasil_pembinaan) }}" alt="Hasil Pembinaan" width="100">
+                @endif
             </div>
             <!-- /.card-body -->
 

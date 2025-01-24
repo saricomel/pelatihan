@@ -7,34 +7,25 @@ use App\Models\umkm;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 
-
-
 class UmkmController extends Controller
 {
-    //
-    public function index()
-{
-    return view('umkm.index', ["title" => "umkm", "data" => umkm::all()]);
-}
+    // Menampilkan daftar data UMKM
+    public function index(): View
+    {
+        return view('umkm.index', [
+            "title" => "Data UMKM",
+            "data" => umkm::all(),
+        ]);
+    }
 
-public function store(Request $request): RedirectResponse
-{
-    $request->validate([
-        "nama_usaha" => "required",
-        "pemilik" => "required",
-        "jenis_usaha" => "required",
-        "alamat" => "nullable",
-    ]);
+    // Menampilkan form untuk menambah data UMKM
+    public function create(): View
+    {
+        return view('umkm.create', ["title" => "Tambah UMKM"]);
+    }
 
-    umkm::create($request->all());
-
-    return redirect()->route('umkm.index')->with('success', 'UMKM Berhasil Ditambahkan.');
-}
-public function edit(Umkm $umkm): View
-{
-    return view('umkm.edit', compact('umkm'))->with(["title" => "Edit UMKM"]);
-}
-public function update(Request $request, umkm $umkm):RedirectResponse
+    // Menyimpan data UMKM baru
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             "nama_usaha" => "required",
@@ -43,8 +34,36 @@ public function update(Request $request, umkm $umkm):RedirectResponse
             "alamat" => "nullable",
         ]);
 
-        $umkm->update($request->all());
-        return redirect()->route('umkm.index')->with('updated','umkm Berhasil Diubah.');
+        umkm::create($request->all());
+
+        return redirect()->route('umkm.index')->with('success', 'UMKM Berhasil Ditambahkan.');
     }
 
+    // Menampilkan form untuk mengedit data UMKM
+    public function edit($id): View
+    {
+        $umkm = umkm::findOrFail($id);
+
+        return view('umkm.edit', [
+            'title' => 'Edit UMKM',
+            'umkm' => $umkm
+        ]);
+    }
+
+    // Memperbarui data UMKM
+    public function update(Request $request, umkm $umkm): RedirectResponse
+    {
+        // Validasi input
+        $request->validate([
+            "nama_usaha" => "required",
+            "pemilik" => "required",
+            "jenis_usaha" => "required",
+            "alamat" => "nullable",
+        ]);
+
+        // Memperbarui data UMKM
+        $umkm->update($request->all());
+
+        return redirect()->route('umkm.index')->with('updated', 'UMKM Berhasil Diubah.');
+    }
 }

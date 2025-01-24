@@ -18,7 +18,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form action="{{ route('pembinaan.store') }}" method="POST">
+        <form action="{{ route('pembinaan.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class=" card-body">
                 <div class="form-group">
@@ -41,9 +41,10 @@
                     <input type="date" class="form-control" id="tanggal" name="tanggal" >
                 </div>
                 <div class="form-group">
-                    <label for="hasil_pembinaan">hasil pembinaan</label>
-                    <input type="text" class="form-control" id="hasil_pembinaan" name="hasil_pembinaan" >
+                    <label for="hasil_pembinaan">Hasil Pembinaan</label>
+                    <input type="file" class="form-control" id="hasil_pembinaan" name="hasil_pembinaan" accept="image/*">
                 </div>
+                           
             <div class="card-footer">
                 <button type="submit" class="btn btn-success float-right">Simpan</button>
             </div>

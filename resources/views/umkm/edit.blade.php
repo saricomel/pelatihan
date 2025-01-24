@@ -26,27 +26,25 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="nama_usaha">Nama Usaha</label>
-                    <input type="text" class="form-control" id="nama_usaha" name="nama_usaha" value="{{ $umkm->nama_usaha }}">
+                    <input type="text" class="form-control" id="nama_usaha" name="nama_usaha" value="{{ old('nama_usaha', $umkm->nama_usaha) }}">
                 </div>
                 <div class="form-group">
                     <label for="pemilik">Pemilik</label>
-                    <input type="text" class="form-control" id="pemilik" name="pemilik" value="{{ $umkm->pemilik }}">
+                    <input type="text" class="form-control" id="pemilik" name="pemilik" value="{{ old('pemilik', $umkm->pemilik) }}">
                 </div>
                 <div class="form-group">
                     <label for="jenis_usaha">Jenis Usaha</label>
-                    <input type="text" class="form-control" id="jenis_usaha" name="jenis_usaha" value="{{ $umkm->jenis_usaha }}">
+                    <input type="text" class="form-control" id="jenis_usaha" name="jenis_usaha" value="{{ old('jenis_usaha', $umkm->jenis_usaha) }}">
                 </div>
                 <div class="form-group">
                     <label for="alamat">Alamat</label>
-                    <textarea id="alamat" name="alamat" class="form-control" rows="4">{{ $umkm->alamat }}</textarea>
+                    <textarea id="alamat" name="alamat" class="form-control" rows="4">{{ old('alamat', $umkm->alamat) }}</textarea>
                 </div>
             </div>
-            <!-- /.card-body -->
-
             <div class="card-footer">
                 <button type="submit" class="btn btn-warning float-right">Simpan</button>
             </div>
-        </form>
+        </form>        
     </div>
 </div>
 @endsection

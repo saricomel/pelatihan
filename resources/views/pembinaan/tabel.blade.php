@@ -36,7 +36,13 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $dt->kegiatan }}</td>
                         <td>{{ $dt->tanggal }}</td>
-                        <td>{{ $dt->hasil_pembinaan }}</td>
+                        <td>
+                            @if($dt->hasil_pembinaan)
+                                <img src="{{ asset('hasil_pembinaan/' . $dt->hasil_pembinaan) }}" alt="Hasil Pembinaan" width="100">
+                            @else
+                                Tidak ada foto
+                            @endif
+                        </td>                        
                         <td>
 
                             <div class="btn-group">

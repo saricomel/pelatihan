@@ -25,25 +25,33 @@ class PembinaanController extends Controller
         ]);
     }
     // Menyimpan data pembinaan dan detail pembinaan
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         // Validasi input
         $request->validate([
-            'umkm_id' => 'required', // Memastikan umkm_id berupa array
-            'kegiatan' => 'required', // Kegiatan wajib diisi
-            'tanggal' => 'required|date', // Tanggal wajib diisi dan valid
-            'hasil_pembinaan' => 'nullable', // Hasil boleh kosong
+            'umkm_id' => 'required',
+            'kegiatan' => 'required',
+            'tanggal' => 'required|date',
+            'hasil_pembinaan' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // Validasi untuk gambar
         ]);
-       
-        // Membuat data pembinaan baru
-        $pembinaan = pembinaan::create([
+    
+        // Simpan file jika ada unggahan
+        $filename = null;
+        if ($request->hasFile('hasil_pembinaan')) {
+            $file = $request->file('hasil_pembinaan');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('hasil_pembinaan'), $filename); // Simpan file ke folder public/hasil_pembinaan
+        }
+    
+        // Simpan data ke database
+        pembinaan::create([
             'umkm' => $request->umkm,
             'kegiatan' => $request->kegiatan,
             'tanggal' => $request->tanggal,
-            'hasil_pembinaan' => $request->hasil_pembinaan,
+            'hasil_pembinaan' => $filename, // Simpan nama file ke database
         ]);
-        // Redirect ke halaman pembinaan dengan pesan sukses
-        return redirect()->route('pembinaan.index')->with('success', 'Data pembinaan Berhasil Ditambahkan');
+    
+        return redirect()->route('pembinaan.index')->with('success', 'Data pembinaan berhasil ditambahkan');
     }
     // Menampilkan form untuk mengedit data pembinaan
     public function edit(pembinaan $pembinaan): View
@@ -55,28 +63,46 @@ class PembinaanController extends Controller
         ]);
     }
     // Menyimpan perubahan data pembinaan dan detail pembinaan
-    public function update(Request $request, pembinaan $pembinaan): RedirectResponse
-    {
-        // Validasi input
-        $request->validate([
-            'kegiatan' => 'required', // Kegiatan wajib diisi
-            'tanggal' => 'required|date', // Tanggal wajib diisi dan valid
-            'hasil_pembinaan' => 'nullable', // Hasil boleh kosong
-        ]);
-        
-        // Perbarui data pembinaan
-        $pembinaan->update([
-            'kegiatan' => $request->kegiatan,
-            'tanggal' => $request->tanggal,
-            'hasil_pembinaan' => $request->hasil_pembinaan,
-        ]);
-        // Hapus detail pembinaan yang lama
-        $pembinaan->detailpembinaan()->delete();
-        // Redirect dengan pesan sukses
-        return redirect()->route('pembinaan.index')->with('updated', 'Data pembinaan Berhasil Diubah');
+    public function update(Request $request, pembinaan $pembinaan)
+{
+    $request->validate([
+        'kegiatan' => 'required',
+        'tanggal' => 'required|date',
+        'hasil_pembinaan' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+    ]);
+
+    if ($request->hasFile('hasil_pembinaan')) {
+        // Hapus foto lama jika ada
+        if ($pembinaan->hasil_pembinaan && file_exists(public_path('hasil_pembinaan/' . $pembinaan->hasil_pembinaan))) {
+            unlink(public_path('hasil_pembinaan/' . $pembinaan->hasil_pembinaan));
+        }
+
+        // Simpan foto baru
+        $file = $request->file('hasil_pembinaan');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path('hasil_pembinaan'), $filename);
+        $pembinaan->hasil_pembinaan = $filename;
     }
-    public function destroy($id){
-        pembinaan::where('id',$id)->Delete();
-        return redirect()->route(('pembinaan.index'))->with('success', 'pembinaan berhasil dihapus');;
+
+    // Update data
+    $pembinaan->update($request->except('hasil_pembinaan') + ['hasil_pembinaan' => $pembinaan->hasil_pembinaan]);
+
+    return redirect()->route('pembinaan.index')->with('success', 'Data pembinaan berhasil diperbarui');
+}
+
+    public function destroy($id)
+{
+    $pembinaan = pembinaan::findOrFail($id);
+
+    // Hapus file foto jika ada
+    if ($pembinaan->hasil_pembinaan && file_exists(public_path('hasil_pembinaan/' . $pembinaan->hasil_pembinaan))) {
+        unlink(public_path('hasil_pembinaan/' . $pembinaan->hasil_pembinaan));
     }
+
+    // Hapus data dari database
+    $pembinaan->delete();
+
+    return redirect()->route('pembinaan.index')->with('success', 'Data pembinaan berhasil dihapus');
+}
+
 }

@@ -7,61 +7,23 @@
 <!-- Toastr -->
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
 @endsection
-
-@section('judulh1','Admin - UMKM')
-@section('judulh3','UMKM')
+@section('judulh1','Admin - Data UMKM')
 @section('konten')
-
-<div class="col-md-4">
-
-    <div class="card card-success">
-        <div class="card-header">
-            <h3 class="card-title">Input UMKM</h3>
-        </div>
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form action="{{ route('umkm.store') }}" method="POST">
-            @csrf
-            <div class=" card-body">
-                <div class="form-group">
-                    <label for="nama_usaha">Nama Usaha</label>
-                    <input type="text" class="form-control" id="nama_usaha" name="nama_usaha" placeholder="Nama Usaha">
-                </div>
-                <div class="form-group">
-                    <label for="pemilik">Pemilik</label>
-                    <input type="text" class="form-control" id="pemilik" name="pemilik" placeholder="Nama Pemilik">
-                </div>
-                <div class="form-group">
-                    <label for="jenis_usaha">Jenis Usaha</label>
-                    <input type="text" class="form-control" id="jenis_usaha" name="jenis_usaha"
-                        placeholder="Jenis Usaha">
-                </div>
-                <div class="form-group">
-                    <label for="alamat">Alamat</label>
-                    <textarea id="alamat" name="alamat" class=" form-control" rows="4"
-                        placeholder="Alamat Usaha"></textarea>
-                </div>
-            </div>
-            <!-- /.card-body -->
-
-            <div class="card-footer">
-                <button type="submit" class="btn btn-success float-right">Simpan</button>
-            </div>
-        </form>
-    </div>
-
-
-</div>
-
-<div class="col-md-8">
+<div class="col-md-12">
     <div class="card card-info">
         <div class="card-header">
-            <h3 class="card-title">Data UMKM</h3>
+            <h2 class="card-title">Data UMKM</h2>
+            <a type="button" class="btn btn-success float-right ml-2" href="{{ route('umkm.create') }}">
+                <i class="fas fa-plus"></i> Tambah UMKM
+            </a>
+            <a type="button" class="btn btn-success float-right" href="{{ route('omzet.create') }}">
+                <i class="fas fa-plus"></i> Tambah OMZET
+            </a>
+            
         </div>
         <!-- /.card-header -->
-
         <div class="card-body">
-            <table id="example1" class="table table-bordered table-striped ">
+            <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -73,7 +35,6 @@
                     </tr>
                 </thead>
                 <tbody>
-
                     @foreach($data as $dt)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
@@ -82,23 +43,27 @@
                         <td>{{ $dt->jenis_usaha }}</td>
                         <td>{{ $dt->alamat }}</td>
                         <td>
-                            <a type="button" class="btn btn-warning" href="{{ route('umkm.edit',$dt->id) }}">
-                                <i class=" fas fa-edit"></i>
-                            </a>
+                            <div class="btn-group">
+                                <form action="{{ route('umkm.destroy', $dt->id) }}" method="post" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus UMKM ini?');" style="width: 70px;">
+                                        <i class="fas fa-trash fa-lg"></i>
+                                    </button>
+                                </form>
+                                <a class="btn btn-sm btn-warning" href="{{ route('umkm.edit', $dt->id) }}" style="width: 70px;">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </div>
                         </td>
                     </tr>
-
                     @endforeach
                 </tbody>
             </table>
-
         </div>
-
-
     </div>
 </div>
 @endsection
-
 @section('tambahanJS')
 <!-- DataTables  & Plugins -->
 <script src="plugins/datatables/jquery.dataTables.min.js"></script>
@@ -115,9 +80,7 @@
 <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- Toastr -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
 @endsection
-
 @section('tambahScript')
 <script>
 $(function() {
@@ -125,22 +88,13 @@ $(function() {
         "responsive": true,
         "lengthChange": true,
         "autoWidth": false,
-        "buttons": [
-            {
-                extend: 'excelHtml5',
-                text: 'Export Excel',
-                title: 'Data UMKM',
-                className: 'btn btn-success'
-            }
-        ]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 });
-
 @if($message = Session::get('success'))
 toastr.success("{{ $message }}");
-@elseif($message = Session::get('updated'))
+@endif
+@if($message = Session::get('updated'))
 toastr.warning("{{ $message }}");
 @endif
 </script>
 @endsection
-
