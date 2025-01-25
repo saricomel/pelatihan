@@ -6,6 +6,16 @@
 <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 <!-- Toastr -->
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+<!-- Tambahkan CSS khusus untuk halaman ini -->
+<style>
+    .foto-hasil-pembinaan {
+        width: 100px; /* Lebar gambar */
+        height: 100px; /* Tinggi gambar */
+        object-fit: cover; /* Agar gambar tetap proporsional */
+        border-radius: 5px; /* Sudut melengkung */
+        border: 1px solid #ddd; /* Garis tepi */
+    }
+</style>
 @endsection
 @section('judulh1','Admin - Pembinaan UMKM')
 @section('konten')

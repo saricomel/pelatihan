@@ -37,7 +37,8 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $dt->umkm->pemilik }}</td>
                         <td>{{ $dt->priodi }}</td>
-                        <td>{{ $dt->jumlah_omzet }}</td>
+                        <td>{{ 'Rp ' . number_format($dt->jumlah_omzet, 0, ',', '.') }}</td>
+
                         <td>
                             <div class="btn-group">
                                 <a type="button" class="btn btn-warning" href="{{ route('omzet.edit',$dt->id) }}">
