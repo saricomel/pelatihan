@@ -29,6 +29,7 @@ Route::resource('pembinaan', PembinaanController::class)->middleware('auth');
 Route::resource('omzet', OmzetController::class)->middleware('auth');
 route::resource('user', UserController::class)
     ->except('destroy','Create','show','update','edit')->middleware('auth');
+    Route::get('/omzet/{id}/edit', [OmzetController::class, 'edit'])->name('omzet.edit');
     Route::get('login',[LoginController::class,'loginView'])->name('login');
     Route::post('login',[LoginController::class,'authenticate']);
     Route::post('logout',[LoginController::class,'logout'])->middleware('auth');

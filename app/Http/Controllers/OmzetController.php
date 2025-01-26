@@ -13,15 +13,17 @@ class OmzetController extends Controller
         // Menampilkan daftar data omzet
         public function index()
         {
-            return view('omzet.tabel', [
+            return view('umkm.index', [
                 "title" => "Data omzet",
-                "data" => omzet::all() // Mengambil semua data omzet
+                "data" => omzet::all(),
+                "umkmData"=>umkm::all(), // Mengambil semua data omzet
+                "omzetData"=>omzet::all(), // Mengambil semua data omzet
             ]);
         }
         // Menampilkan form untuk menambah data omzet
         public function create()
         {
-            return view('omzet.tambah')->with([
+            return view('umkm.tambah')->with([
                 "title" => "Tambah Data omzet",
                 "umkm" => umkm::all(), // Mengirim data UMKM ke view
             ]);
@@ -39,13 +41,18 @@ public function store(Request $request): RedirectResponse
     return redirect()->route('omzet.index')->with('success', 'Data omzet Berhasil Ditambahkan');
 }
 
-// Menampilkan form untuk mengedit data omzet
-public function edit(omzet $omzet): View
-{
-    // $omzet= omzet::all();
-    return view('omzet.edit', compact('omzet'))->with(["title" => "Edit omzet"]);
-}
+ // Metode untuk menampilkan form edit omzet
+ public function edit($id)
+ {
+     // Mencari data Omzet berdasarkan ID
+     $omzet = Omzet::findOrFail($id);
 
+     // Mengirimkan data Omzet ke view edit
+     return view('umkm.ubah', [
+         'title' => 'Edit Omzet',
+         'omzet' => $omzet, // Mengirimkan data Omzet ke view
+     ]);
+ }
 public function update(Request $request, omzet $omzet):RedirectResponse
     {
         
@@ -55,7 +62,7 @@ public function update(Request $request, omzet $omzet):RedirectResponse
         ]);
 
         $omzet->update($request->all());
-        return redirect()->route('omzet.index')->with('updated','omzet Berhasil Diubah.');
+        return redirect()->route('umkm.index')->with('updated','omzet Berhasil Diubah.');
     }
 
 }

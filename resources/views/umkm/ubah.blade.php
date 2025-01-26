@@ -1,11 +1,12 @@
 @extends('layouts.template')
-@section('judulh1','Admin - omzet')
+
+@section('judulh1', $title)
 
 @section('konten')
 <div class="col-md-6">
     @if ($errors->any())
     <div class="alert alert-danger">
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <strong>Whoops!</strong> Ada yang salah.<br><br>
         <ul>
             @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>
@@ -16,7 +17,7 @@
 
     <div class="card card-warning">
         <div class="card-header">
-            <h3 class="card-title">Ubah Data omzet</h3>
+            <h3 class="card-title">Edit Omzet</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
@@ -25,21 +26,22 @@
             @method('PUT')
             <div class="card-body">
                 <div class="form-group">
-                    <label for="priodi">priodi</label>
-                    <input type="date" class="form-control" id="priodi" name="priodi" value="{{ $omzet->priodi }}">
+                    <label for="umkm">UMKM</label>
+                    <input type="text" class="form-control" id="umkm" name="umkm" value="{{ $omzet->umkm->pemilik }}" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="priodi">Periode</label>
+                    <input type="text" class="form-control" id="priodi" name="priodi" value="{{ $omzet->priodi }}">
                 </div>
                 <div class="form-group">
                     <label for="jumlah_omzet">Jumlah Omzet</label>
-                    <input type="numeric" class="form-control" id="jumlah_omzet" name="jumlah_omzet" value="{{ $omzet->jumlah_omzet }}">
+                    <input type="number" class="form-control" id="jumlah_omzet" name="jumlah_omzet" value="{{ $omzet->jumlah_omzet }}">
                 </div>
             </div>
-      
-            <!-- /.card-body -->
-
             <div class="card-footer">
                 <button type="submit" class="btn btn-warning float-right">Simpan</button>
             </div>
-        </form>
+        </form>        
     </div>
 </div>
 @endsection

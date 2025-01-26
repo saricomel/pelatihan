@@ -126,16 +126,6 @@
                                 </p>
                             </a>
                         </li>
-
-                        <li class="nav-item">
-    <a href="{{ route('omzet.index') }}" class="nav-link {{($title==='omzet')?'active':''}}">
-        <i class="nav-icon fas fa-chart-line"></i> <!-- Ikon Omzet -->
-        <p>
-            Omzet
-            <i class="fas fa-angle-left right"></i>
-        </p>
-    </a>
-</li>
                         <li class="nav-item">
                             <a href="{{route('user.index')}}" class="nav-link {{ ($title==='Users')?'active':''}}">
                                 <i class="nav-icon fas fa-users"></i>

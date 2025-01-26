@@ -9,4 +9,9 @@ class umkm extends Model
 {
     use HasFactory;
     protected $fillable=['nama_usaha','pemilik','jenis_usaha','alamat'];
+
+    public function omzets()
+{
+    return $this->hasMany(Omzet::class);
+}
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Omzet;
 use Illuminate\Http\Request;
 use App\Models\umkm;
 use Illuminate\View\View;
@@ -9,15 +10,20 @@ use Illuminate\Http\RedirectResponse;
 
 class UmkmController extends Controller
 {
-    // Menampilkan daftar data UMKM
-    public function index(): View
+    public function index()
     {
-        return view('umkm.index', [
-            "title" => "Data UMKM",
-            "data" => umkm::all(),
-        ]);
+        // Ambil data UMKM
+        $umkmData = Umkm::all();
+    
+        // Ambil data omzet
+        $omzetData = Omzet::all();
+    
+        // Tentukan judul halaman
+        $title = 'UMKM dan Omzet';
+    
+        // Kirimkan data ke view
+        return view('umkm.index', compact('umkmData', 'omzetData', 'title'));
     }
-
     // Menampilkan form untuk menambah data UMKM
     public function create(): View
     {
@@ -39,17 +45,15 @@ class UmkmController extends Controller
         return redirect()->route('umkm.index')->with('success', 'UMKM Berhasil Ditambahkan.');
     }
 
-    // Menampilkan form untuk mengedit data UMKM
-    public function edit($id): View
-    {
-        $umkm = umkm::findOrFail($id);
-
-        return view('umkm.edit', [
-            'title' => 'Edit UMKM',
-            'umkm' => $umkm
-        ]);
-    }
-
+   // Menampilkan form untuk mengedit data UMKM
+public function edit($id): View
+{
+    $umkm = umkm::findOrFail($id); // Menemukan data UMKM berdasarkan ID
+    return view('umkm.edit', [
+        'title' => 'Edit UMKM',
+        'umkm' => $umkm, // Mengirimkan data UMKM ke view
+    ]);
+}
     // Memperbarui data UMKM
     public function update(Request $request, umkm $umkm): RedirectResponse
     {

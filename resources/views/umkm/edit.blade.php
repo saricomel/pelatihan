@@ -1,6 +1,7 @@
 @extends('layouts.template')
-@section('judulh1','TAMPILAN EDIT UMKM')
-@section('judulh3','Edit UMKM')
+
+@section('judulh1', $title)
+
 @section('konten')
 <div class="col-md-6">
     @if ($errors->any())
@@ -47,4 +48,5 @@
         </form>        
     </div>
 </div>
+
 @endsection
