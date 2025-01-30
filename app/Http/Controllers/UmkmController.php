@@ -70,4 +70,12 @@ public function edit($id): View
 
         return redirect()->route('umkm.index')->with('updated', 'UMKM Berhasil Diubah.');
     }
+    public function destroy($id): RedirectResponse
+{
+    $umkm = Umkm::findOrFail($id);
+    $umkm->delete();
+
+    return redirect()->route('umkm.index')->with('success', 'UMKM berhasil dihapus.');
+}
+
 }

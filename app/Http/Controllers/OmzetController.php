@@ -64,5 +64,12 @@ public function update(Request $request, omzet $omzet):RedirectResponse
         $omzet->update($request->all());
         return redirect()->route('umkm.index')->with('updated','omzet Berhasil Diubah.');
     }
-
+    public function destroy($id): RedirectResponse
+    {
+        $omzet = Omzet::findOrFail($id);
+        $omzet->delete();
+    
+        return redirect()->route('umkm.index')->with('success', 'Omzet berhasil dihapus.');
+    }
+    
 }

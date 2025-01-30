@@ -43,7 +43,14 @@
                                         <a href="{{ route('umkm.edit', $dt->id) }}" class="btn btn-warning btn-sm">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        
+                                         <!-- Tombol Hapus untuk UMKM -->
+                                         <form action="{{ route('umkm.destroy', $dt->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus UMKM ini?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -88,7 +95,14 @@
                                         <a href="{{ route('omzet.edit', $dt->id) }}" class="btn btn-warning btn-sm">
                                             <i class="fas fa-edit"></i>
                                         </a>                                        
-                                        
+                                        <!-- Tombol Hapus untuk Omzet -->
+                                        <form action="{{ route('omzet.destroy', $dt->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus Omzet ini?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
