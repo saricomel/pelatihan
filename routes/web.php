@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\dashbordcontroller;
 use App\Http\Controllers\laporancontroller;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OmzetController;
@@ -18,12 +19,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('dashboard',[
-        "title"=>"Dashboard"
-    ]);
-})->middleware('auth');
+Route::get('/',[dashbordcontroller::class,'welcome'])
+->middleware('auth');
 Route::resource('umkm', UmkmController::class)->middleware('auth');
 Route::resource('pembinaan', PembinaanController::class)->middleware('auth');
 Route::resource('omzet', OmzetController::class)->middleware('auth');

@@ -1,44 +1,104 @@
 @extends('layouts.template')
-@section('judulh1','RB ACEH TAMIANG')
+@section('judulh1','Admin - Dashboard')
 
-@section('konten') 
-<div class="col-lg-12">
-    <div class="card shadow-lg border-0">
-        <div class="card-header text-white" style="background-color: #4CAF50;">
-            <div class="d-flex justify-content-between align-items-center">
-                <!-- Judul Rumah BUMN -->
-                <h3 class="card-title font-weight-bold">Selamat Datang di Rumah BUMN Aceh Tamiang</h3>
-            </div>
+@section('konten')
+
+<div class="container-fluid">
+
+    <!-- =========================================================== -->
+                <!-- /.info-box-content -->
+                </div>
+            <!-- /.info-box -->
         </div>
-        <div class="card-body" style="background-color: #f1f9f4;">
-            <h3 class="text-center font-weight-bold text-dark mb-4">Beberapa Pelatihan Yang Lakukan Di Rumah BUMN</h3>
-            <!-- Daftar kegiatan dalam format teks -->
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Seduhan kopi bersama owner KopiKuRasa</li>
-                <li class="list-group-item">Pembuatan gelang manik bersama owner Inovasi Cantik</li>
-                <li class="list-group-item">Pembuatan gantungan kunci kain perca bersama owner Fashion Style</li>
-                <li class="list-group-item">Pembuatan tas kain perca bersama owner Fashion Style</li>
-                <li class="list-group-item">Rajut handmade bersama owner Sahada</li>
-                <li class="list-group-item">Pembuatan gantungan kunci resin dan kain perca bersama owner Poligani</li>
-            </ul>
-        </div>
+        <!-- /.col -->
     </div>
-</div>
-@endsection
+    <!-- /.row -->
 
-<style>
-    /* Style untuk teks di dashboard */
-    .list-group-item {
-        font-size: 16px;
-        font-weight: 500;
-        background-color: #f9f9f9;
-        border: none;
-        padding: 10px 15px;
-        margin-bottom: 5px;
-        border-radius: 5px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    .list-group-item:hover {
-        background-color: #e8f5e9;
-    }
-</style>
+    <!-- =========================================================== -->
+
+<!-- =========================================================== -->
+
+                
+        </thead>
+        
+    
+    
+    
+    
+            <!-- =========================================================== -->
+            <h1 class="h3 mb-1 mt-3">
+                <strong>manajemen</strong> Tercatat
+            </h1>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-12">
+                    <div class="info-box bg-gradient-info">
+                    <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">User</span>
+                        <span class="info-box-number">{{$user}}</span>
+
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 70%"></div>
+                        </div>
+                        <span class="progress-description">
+                            70% Increase in 30 Days
+                        </span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-3 col-sm-6 col-12">
+                <div class="info-box bg-gradient-success">
+                    <span class="info-box-icon"><i class="far fa-thumbs-up"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Umkm</span>
+                        <span class="info-box-number">{{$umkm}}</span>
+
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 70%"></div>
+                        </div>
+                        <span class="progress-description">
+                            70% Increase in 30 Days
+                        </span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-3 col-sm-6 col-12">
+                <div class="info-box bg-gradient-warning">
+                    <span class="info-box-icon"><i class="far fa-calendar-alt"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">pembinaan</span>
+                        <span class="info-box-number">{{$pembinaan}}</span>
+
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 70%"></div>
+                        </div>
+                        <span class="progress-description">
+                            70% Increase in 30 Days
+                        </span>
+                    </div>
+ <!-- /.info-box-content -->
+ </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+
+
+    @endsection
