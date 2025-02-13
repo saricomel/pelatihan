@@ -12,13 +12,7 @@
         </div>
         <!-- /.col -->
     </div>
-    <!-- /.row -->
-
-    <!-- =========================================================== -->
-
-<!-- =========================================================== -->
-
-                
+    <!-- /.row -->        
         </thead>
         
     
@@ -32,7 +26,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="info-box bg-gradient-info">
-                    <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
+                    <span class="info-box-icon"><i class="nav-icon fas fa-users"></i></span>
 
                     <div class="info-box-content">
                         <span class="info-box-text">User</span>
@@ -52,7 +46,7 @@
             <!-- /.col -->
             <div class="col-md-3 col-sm-6 col-12">
                 <div class="info-box bg-gradient-success">
-                    <span class="info-box-icon"><i class="far fa-thumbs-up"></i></span>
+                    <span class="info-box-icon"><i class="nav-icon fas fa-store"></i></span>
 
                     <div class="info-box-content">
                         <span class="info-box-text">Umkm</span>
@@ -72,7 +66,7 @@
             <!-- /.col -->
             <div class="col-md-3 col-sm-6 col-12">
                 <div class="info-box bg-gradient-warning">
-                    <span class="info-box-icon"><i class="far fa-calendar-alt"></i></span>
+                    <span class="info-box-icon"><i class="nav-icon fas fa-chalkboard-teacher"></i></span>
 
                     <div class="info-box-content">
                         <span class="info-box-text">pembinaan</span>
